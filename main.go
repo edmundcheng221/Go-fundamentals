@@ -25,6 +25,8 @@ func main() {
 	result := r.area()
 	fmt.Println(result) // Output: 15
 
+	assert("254")
+
 }
 
 func variables() int {
@@ -86,11 +88,40 @@ func getCarDetails() {
 }
 
 type rect struct {
-	length int
-	width  int
+	length float64
+	width  float64
 }
 
 // (r rect) is a receiver -> "computed properties"
-func (r rect) area() int {
+func (r rect) area() float64 {
 	return r.length * r.width
+}
+
+func (r rect) perimeter() float64 {
+	return 2*r.length + 2*r.width
+}
+
+// interfaces - collection of method signatures
+
+type shape interface {
+	area() float64
+}
+
+func assert(num interface{}) {
+	var i interface{} = "Hello, World!"
+
+	str, ok := i.(string) // stores the string and ok (boolean) if the assertion is true
+
+	fmt.Println(str, ok)
+
+	// type switch
+	switch v := num.(type) {
+	case int:
+		fmt.Printf("%T\n", v)
+	case string:
+		fmt.Printf("%T\n", v)
+	default:
+		fmt.Printf("%T\n", v)
+	}
+
 }
