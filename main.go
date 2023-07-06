@@ -26,7 +26,7 @@ func main() {
 	fmt.Println(result) // Output: 15
 
 	assert("254")
-
+	operators()
 }
 
 func variables() int {
@@ -114,6 +114,10 @@ func assert(num interface{}) {
 
 	fmt.Println(str, ok)
 
+	str = "hello"
+
+	fmt.Println(str)
+
 	// type switch
 	switch v := num.(type) {
 	case int:
@@ -124,4 +128,11 @@ func assert(num interface{}) {
 		fmt.Printf("%T\n", v)
 	}
 
+}
+
+func operators() {
+	number := 20
+	fmt.Println(number)
+	number %= 3
+	fmt.Println(number)
 }
