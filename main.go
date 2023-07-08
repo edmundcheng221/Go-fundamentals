@@ -1,6 +1,7 @@
 package main
 
 import (
+	errs "errors" // errs is alias
 	"fmt"
 )
 
@@ -27,6 +28,10 @@ func main() {
 
 	assert("254")
 	operators()
+
+	fmt.Println(formatStrings(28.365876))
+
+	fmt.Println(usingErrorsPackage())
 }
 
 func variables() int {
@@ -135,4 +140,55 @@ func operators() {
 	fmt.Println(number)
 	number %= 3
 	fmt.Println(number)
+}
+
+func someFunctionThatCanHaveErrors() (int, error) {
+	return 20, fmt.Errorf("error")
+}
+
+// errors
+func someerrors() {
+	// one way
+	response, err := someFunctionThatCanHaveErrors()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(response)
+}
+
+func sendSMSToCouple(msgToCustomer, msgToSpouse string) (float64, error) {
+	cost4cust, err := sendSMS(msgToCustomer)
+	if err != nil {
+		return 0.0, userError{name: "ahsfbsdh"}
+	}
+	cost4spouse, err := sendSMS(msgToSpouse)
+	if err != nil {
+		return 0.0, err
+	}
+	return cost4cust + cost4spouse, nil
+
+}
+
+func sendSMS(message string) (float64, error) {
+	return 20, nil
+}
+
+func formatStrings(age float64) string {
+	return fmt.Sprintf("Edmund is %.2f years old", age)
+}
+
+// errors are interfaces
+// You can build custom types that implement error
+
+type userError struct {
+	name string
+}
+
+func (err userError) Error() string {
+	return fmt.Sprintf("Error with user's account, %v", err.name)
+}
+
+func usingErrorsPackage() error {
+	return errs.New("Some error message")
 }
