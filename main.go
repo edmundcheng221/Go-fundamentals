@@ -32,6 +32,8 @@ func main() {
 	fmt.Println(formatStrings(28.365876))
 
 	fmt.Println(usingErrorsPackage())
+
+	forLoops(20)
 }
 
 func variables() int {
@@ -192,3 +194,31 @@ func (err userError) Error() string {
 func usingErrorsPackage() error {
 	return errs.New("Some error message")
 }
+
+// loops
+
+func forLoops(threshold float64) {
+	for i := 0; i < 10; i++ {
+		fmt.Println(i)
+	}
+	// "while" loop -> no explicit while loop, we use for
+	// for condition {}
+	num := 2
+	for num < 5 {
+		num++
+		fmt.Println(num)
+	}
+	totalCost := 0.0
+	for i := 0; ; i++ { // initial; condition; after -> you can omit parts
+		// omitting the condition will make the loop run forever
+		totalCost += 1.0 + (0.01 * float64(i))
+		if totalCost > threshold {
+			return
+		}
+		fmt.Printf("%.2f", totalCost)
+	}
+
+}
+
+// continue -> continues to next iteraction; bail out current loop early
+// break -> breaks out of loop
