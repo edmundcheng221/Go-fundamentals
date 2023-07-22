@@ -1,6 +1,7 @@
 package main
 
 import (
+	"edmundcheng221/go-essentials/helper"
 	errs "errors" // errs is alias
 	"fmt"
 )
@@ -34,6 +35,9 @@ func main() {
 	fmt.Println(usingErrorsPackage())
 
 	forLoops(20)
+
+	fmt.Println(helper.Helloworld())
+
 }
 
 func variables() int {
@@ -216,6 +220,7 @@ func forLoops(threshold float64) {
 			return
 		}
 		fmt.Printf("%.2f", totalCost)
+		fmt.Println()
 	}
 
 }
