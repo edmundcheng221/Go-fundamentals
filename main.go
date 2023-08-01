@@ -12,7 +12,44 @@ import (
 // One way to declare
 var empty string = "hello world"
 
+func contains(s string, e rune) bool {
+	for _, a := range s {
+		if string(a) == string(e) {
+			return true
+		}
+	}
+	return false
+}
+
+func removeLetterFromString(str string, letter rune) string {
+	result := ""
+	for _, char := range str {
+		if char != letter {
+			result += string(char)
+		}
+	}
+	return result
+}
+
+func findHiddenWord(str string) string {
+	dictionary := [2]string{"cat", "baby"}
+	for _, word := range dictionary {
+		copy := word
+		for _, char := range copy {
+			if contains(str, char) {
+				copy = removeLetterFromString(copy, char)
+			}
+		}
+		if len(copy) == 0 {
+			return word
+		}
+	}
+	return "-"
+}
+
 func main() {
+	str := "jnsfobcsdnvtdsva"
+	fmt.Println(findHiddenWord(str))
 	value := fmt.Sprintf("%d", variables())
 	fmt.Println(value)
 
